@@ -40,28 +40,34 @@ class Upload extends CI_Controller{
 			$src_v = './attach/temp/'.$name.'_v'.$ext;
 
 			//处理bmp和psd
+			$convert_result = true;
 			if($ext == '.bmp' || $ext == '.psd'){
+				$this->load->library('image_reader');
+				$this->image_reader->init(array('src'=>$src,'dest'=>'./attach/temp/'.$name.'.jpg'));
+				$convert_result = $this->image_reader->write();
+
 				$ext = '.jpg';
-				$src = '';
+				$src = './attach/temp/'.$name.$ext;
+				$src_v = './attach/temp/'.$name.'_v'.$ext;
 			}
 
 			//压缩图片生成缩略图
-			if($upload_result){
-				$this->_create_veiw($src,$src_v);
+			if($upload_result && $convert_result){
+				$this->_create_view($src,$src_v);
 			}
 			
 			//返回json
 			
-			$upload_result_str = $upload_result ? 'ok' : 'failed';
+			$upload_result_str = ($upload_result && $convert_result) ? 'ok' : 'failed';
 			
 			$data = array();
 			
-			if($upload_result){
+			if($upload_result && $convert_result){
 				$data['name'] = $name;
 				$data['ext'] = $ext;
 				$data['type'] = strtolower($filedata['file_ext']);
 			}else{
-				$data['err'] = $upload_error;
+				$data['err'] = $upload_error ? $upload_error : '格式转换失败';
 			}
 			
 			$returnAarray = array(
@@ -79,7 +85,26 @@ class Upload extends CI_Controller{
 		print json_encode($returnAarray);
 	}
 
-	private function _create_veiw($src,$src_v){
+	function remove(){
+		$info = $this->input->get('info',TRUE);
+		$tmp = explode(".",$info);
+		$r = false;
+		if($tmp[1] == 'psd' || $tmp[1] == 'bmp'){
+			$r1 = unlink('./attach/temp/'.$tmp[0].'.'.$tmp[1]);
+			$r2 = unlink('./attach/temp/'.$tmp[0].'.jpg');
+			$r3 = unlink('./attach/temp/'.$tmp[0].'_v.jpg');
+			$r = $r1 && $r2 && $r3;
+		}else{
+			$r1 = unlink('./attach/temp/'.$tmp[0].'.'.$tmp[1]);
+			$r2 = unlink('./attach/temp/'.$tmp[0].'_v.'.$tmp[1]);
+			$r = $r1 && $r2;
+		}
+		if($r) $returnAarray = array('status' => 'ok');
+		else $returnAarray = array('status' => 'failed');
+		print json_encode($returnAarray);
+	}
+
+	private function _create_view($src,$src_v){
 
 		$this->load->helper('common');
 

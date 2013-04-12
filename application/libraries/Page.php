@@ -28,7 +28,7 @@ class Page{
 					$this->$key = $val;
 				}
 			}
-		}		
+		}
 	}
 	
 	public function get_cur_page(){

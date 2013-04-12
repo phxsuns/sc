@@ -38,7 +38,7 @@ var doUpload = function(files){
 	if(!files.length) return;
 	var okcount = 0;
 	$('#mask').fadeIn();
-	$('#popLoading').fadeIn();
+	$('#popLoading').fadeIn().find('.loading').html('处理中(0/'+files.length+')');
 	for(var i=0;i<files.length;i++){
 		upload(files[i],function(data){
 			//console.log(data);
@@ -60,8 +60,8 @@ var doUpload = function(files){
 };
 
 var loading = function(n,total){
-	var per = (n * 100 / total ) | 0;
-	$('#popLoading .loading').html('处理中('+per+'%)');
+	//var per = (n * 100 / total ) | 0;
+	$('#popLoading .loading').html('处理中('+n+'/'+total+')');
 };
 
 var completeUpload = function(n){
@@ -79,6 +79,22 @@ $(function(){
 
 	$('#fileAdd').bind('change',function(){
 		doUpload(this.files);
+	});
+
+	//移除逻辑
+	$('#fileList').delegate('.btn-rm','click',function(e){
+		var $this = $(this);
+		var $tr = $this.parents('tr');
+		var info = $tr.attr('data-info');
+		$('#mask').fadeIn();
+		$('#popLoading').fadeIn().find('.loading').html('处理中');
+		$.get('/upload/remove',{info:info},function(data){
+			if(data.status == 'ok'){
+				$tr.remove()
+				$('#mask').fadeOut();
+				$('#popLoading').fadeOut();
+			}
+		},'json');
 	});
 
 });

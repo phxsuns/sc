@@ -84,7 +84,7 @@
 
 	<div class="modal add-loading" id="popLoading">
 		<div class="modal-body">
-			<div class="loading">处理中(0%)</div>
+			<div class="loading">处理中(0/0)</div>
 		</div>
 	</div>
 
