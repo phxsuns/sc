@@ -1,5 +1,5 @@
 <?php
-	echo time();
+	copy('./attach/temp/e6c6d5471bc3305cc928acb34c63032c.png','e6c6d5471bc3305cc928acb34c63032c_v.png');
 ?>
 
 <html>

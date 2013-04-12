@@ -1,0 +1,119 @@
+html{
+	overflow-y: scroll; 
+}
+.adminnav{
+	background-color: #1b1b1b;
+	background-image: -moz-linear-gradient(top, #222222, #111111);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+	background-image: -webkit-linear-gradient(top, #222222, #111111);
+	background-image: -o-linear-gradient(top, #222222, #111111);
+	background-image: linear-gradient(to bottom, #222222, #111111);
+	background-repeat: repeat-x;
+	border-color: #252525;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+
+}
+.adminnav .navi{
+	list-style: none;
+	margin: 0;
+}
+.adminnav .navi > li {
+	float: left;
+}
+.adminnavbox{
+	width: 1200px;
+	margin: 0 auto;
+}
+.adminnav .navi > li > a {
+	color: #999999;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	text-decoration: none;
+	padding: 10px 15px 10px;
+	display: block;
+}
+
+.adminnav .navi > li > a:hover,
+.adminnav .navi > li > a:focus {
+	color: #ffffff;
+}
+.adminnav .navi > li.active > a{
+	color: #ffffff;
+	background-color: #111111;
+}
+
+
+.adminbox{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.add-action{
+	padding: 10px;
+}
+.add-list{
+	padding-bottom: 20px;
+}
+
+.add-list .table tbody tr td:first-child{
+	vertical-align: middle;
+	text-align: center;
+}
+
+.add-list .table tbody tr td:last-child{
+	text-align: right;
+}
+
+.add-list .thumbnail{
+	background-color: #FFFFFF;
+	width: 250px;
+	height: 250px;
+}
+.add-list .thumbnailbox{
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.add-list .btn-rm{
+	display: none;
+}
+.add-list .table tbody tr:hover .btn-rm{
+	display: inline-block;
+}
+
+.add-save{
+	text-align: center;
+}
+.add-save .btn{
+	width: 150px;
+}
+
+.mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 1000;
+	display: none;
+}
+.add-success{
+	top: 50%;
+	margin-top: -105px;
+	display: none;
+}
+.add-loading{
+	width: 200px;
+	margin-left: -100px;
+	top: 50%;
+	margin-top: -45px;
+	display: none;
+}
+.loading{
+	background: url(../images/icon-loading-large.gif) no-repeat;
+	padding-left: 50px;
+	line-height: 32px;
+}
