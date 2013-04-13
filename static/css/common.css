@@ -18,3 +18,5 @@ body,input,textarea{font:12px/1.5 Tahoma,Arial,"\5b8b\4f53",sans-serif;}
 body{color:#666;}
 img,input,button{vertical-align:middle;}
 input,button{line-height:normal;color:#333;}
+a{text-decoration: none;color:#666666;}
+a:hover{color:#FF9422;};

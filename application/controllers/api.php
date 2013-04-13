@@ -36,7 +36,7 @@ class Api extends CI_Controller{
 			$row = array();
 			$row['path'] = $this->_do_images($post_info[$i]);
 			$row['title'] = $post_ori[$i];
-			$row['intro'] = '';
+			$row['intro'] = $post_ori[$i];
 			$row['user'] = $this->uid;
 			$row['attach'] = $post_info[$i];
 			$row['tags'] = $post_tag[$i];
