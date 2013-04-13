@@ -57,13 +57,13 @@
 					</div>
 					<div class="item-main">
 						<h3><a href="/show/<?=$v['id'] ?>"><?php
-							$tags = isset($tag) ? $tag : '';
+							$tag = isset($tag) ? $tag : '';
 							$keys = isset($keys) ? $keys : array();
+							$keys[] = $tag;
 							$r = array();
 							foreach ($v['tags'] as $vv) {
-								if($tags == $vv) $vv = '<span class="red">'.$vv.'</span>';
 								foreach ($keys as $w) {
-									if($w == $vv) $vv = '<span class="red">'.$vv.'</span>';
+									$vv = str_replace($w, '<span class="red">'.$w.'</span>', $vv);
 								}
 								$r[] = $vv;
 							}

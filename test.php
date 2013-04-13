@@ -1,5 +1,6 @@
 <?php
-
+$keys = array('xxx','中文');
+print_r(str_split('中文'));
 ?>
 
 <html>
