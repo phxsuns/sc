@@ -73,7 +73,7 @@
 			<h3>素材保存成功</h3>
 		</div>
 		<div class="modal-body">
-			<p>本次新增素材 <span class="label label-important">101</span> 个</p>
+			<p>本次新增素材 <span class="label label-important num-save">0</span> 个</p>
 			<p>接着您打算？</p>
 		</div>
 		<div class="modal-footer">

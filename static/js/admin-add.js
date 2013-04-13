@@ -43,7 +43,7 @@ var doUpload = function(files){
 		upload(files[i],function(data){
 			//console.log(data);
 			var d = data.data;
-			var html = '<tr data-info="'+d.name + d.type+'">\
+			var html = '<tr data-info="'+d.name + d.type+'" data-ori="'+data.name+'">\
 							<td><div class="thumbnail"><div class="thumbnailbox"><img src="/attach/temp/'+d.name+'_v' + d.ext+'"></div></div></td>\
 							<td>\
 								<input type="text" class="input-xxlarge input-tag">\
@@ -71,8 +71,6 @@ var completeUpload = function(n){
 }
 
 
-/* 提交逻辑 */
-
 
 //Dom Ready
 $(function(){
@@ -87,14 +85,46 @@ $(function(){
 		var $tr = $this.parents('tr');
 		var info = $tr.attr('data-info');
 		$('#mask').fadeIn();
-		$('#popLoading').fadeIn().find('.loading').html('处理中');
+		$('#popLoading').fadeIn().find('.loading').html('处理中...');
 		$.get('/upload/remove',{info:info},function(data){
 			if(data.status == 'ok'){
 				$tr.remove()
 				$('#mask').fadeOut();
 				$('#popLoading').fadeOut();
+				if(!$('#fileList tbody tr')[0]) $('#fileList').hide();
 			}
 		},'json');
+	});
+
+
+	//提交逻辑
+	$('#btnSave').bind('click',function(){
+		var infoList = [];
+		var oriList = [];
+		var tagList = [];
+		$('#fileList tbody tr').each(function(){
+			var $this = $(this);
+			infoList.push($this.attr('data-info'));
+			oriList.push($this.attr('data-ori'));
+			tagList.push($this.find('.input-tag').val().replace('，',','));
+		});
+		$('#mask').fadeIn();
+		$('#popLoading').fadeIn().find('.loading').html('处理中...');
+		$.post('/api/post_add',{info:infoList,ori:oriList,tag:tagList},function(data){
+			if(data.status == 'ok'){			
+				$('#popLoading').hide();
+				$('#popSaveOk .num-save').text(infoList.length);
+				$('#popSaveOk').fadeIn();
+			}
+		},'json');
+	});
+
+	$('#btnSaveOk').bind('click',function(e){
+		e.preventDefault();
+		$('#fileList tbody').html('');
+		$('#fileList').hide();
+		$('#mask').fadeOut();
+		$('#popSaveOk').fadeOut();
 	});
 
 });

@@ -38,9 +38,11 @@
 |
 */
 
-$route['default_controller'] = "list";
+$route['default_controller'] = "sc";
 $route['404_override'] = '';
 $route['show/(:num)'] = "detail/show/$1";
+$route['search/(:any)'] = "sc/search/$1";
+$route['tag/(:any)'] = "sc/tag/$1";
 
 
 /* End of file routes.php */

@@ -1,6 +1,5 @@
 <?php
-	$str = './attach/temp/abc.psd';
-	echo substr($str,-3);
+
 ?>
 
 <html>

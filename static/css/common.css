@@ -8,8 +8,13 @@ abbr,acronym{border:0}
 /* tables still need 'cellspacing="0"' in the markup */
 table {border-collapse:collapse; border-spacing:0;}
 /* ----- common class ------ */
-:focus {outline-color: -moz-use-text-color;outline-style: none;outline-width: 0;}
+a:focus,button:focus {outline-color: -moz-use-text-color;outline-style: none;outline-width: 0;}
 .clr:after {content: ".";display: block; height: 0; clear: both; visibility: hidden;}
 .clr{zoom:1;}
-
-/* common */
+.container{margin-left:auto;margin-right:auto;width:980px;zoom:1;}
+.container:after {content: ".";display: block; height: 0; clear: both; visibility: hidden;}
+html{overflow-y:scroll;}
+body,input,textarea{font:12px/1.5 Tahoma,Arial,"\5b8b\4f53",sans-serif;}
+body{color:#666;}
+img,input,button{vertical-align:middle;}
+input,button{line-height:normal;color:#333;}
