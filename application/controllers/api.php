@@ -50,6 +50,22 @@ class Api extends CI_Controller{
 
 	}
 
+	public function post_del(){
+		$id = (int) $this->input->get('id',TRUE);
+		$r = false;
+		if($id){
+			$detail = $this->Post->show_detail($id);
+			if(count($detail) > 0){
+				$this->_del_images($detail["attach_path"],$detail["attach_name"],$detail["attach_type"]);
+				$r = $this->Post->post_del($id);
+			}
+		}
+		if($r) $returnAarray = array('status' => 'ok');
+		else $returnAarray = array('status' => 'failed');
+		print json_encode($returnAarray);
+		
+	}
+
 	//添加时对图片处理
 	private function _do_images($file){
 		
@@ -92,6 +108,7 @@ class Api extends CI_Controller{
 			$this->load->library('image_lib');	
 			$config['width'] = 980;
 			//$config['height'] = 845;
+			$config['source_image'] = $path.$file_ori_view;
 			$config['new_image'] = $path.$file_d;
 			$this->image_lib->initialize($config);
 			$this->image_lib->resize();
@@ -101,6 +118,24 @@ class Api extends CI_Controller{
 		}
 		
 		return $date_to_dir;
+	}
+
+	private function _del_images($path,$file,$type){
+		$path = './attach/'.$path.'/';
+		$r = false;
+		if($type == 'psd' || $type == 'bmp'){
+			$r1 = @unlink($path.$file.'.'.$type);
+			$r2 = @unlink($path.$file.'.jpg');
+			$r3 = @unlink($path.$file.'_v.jpg');
+			$r4 = @unlink($path.$file.'_d.jpg');
+			$r = $r1 && $r2 && $r3 && $r4;
+		}else{
+			$r1 = @unlink($path.$file.'.'.$type);
+			$r2 = @unlink($path.$file.'_v.'.$type);
+			$r3 = @unlink($path.$file.'_d.'.$type);
+			$r = $r1 && $r2 && $r3;
+		}
+		return $r;
 	}
 
 }

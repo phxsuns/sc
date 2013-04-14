@@ -35,7 +35,8 @@ class Page{
 		$CI =& get_instance();
 		
 		$uri = $CI->uri->uri_to_assoc($this->uri_segment);
-		return isset($uri['page']) ? (int) $uri['page'] : 1;
+		$num = isset($uri['page']) ? (int) $uri['page'] : 1;
+		return ($num > 0) ? $num : 1;
 	}
 	
 	public function get_total_pages(){

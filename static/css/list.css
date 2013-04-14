@@ -40,6 +40,7 @@
 .item{
 	padding: 20px 0;
 	border-bottom: 1px dashed #E4E4E4;
+	position: relative;
 	*zoom:1;
 }
 .item:after{
@@ -90,6 +91,16 @@
 
 .pager .pagination{
 	float: right;
+}
+
+.item-admin{
+	position: absolute;
+	bottom: 20px;
+	right: 0;
+	display: none;
+}
+.item:hover .item-admin{
+	display: block;
 }
 
 .empty{

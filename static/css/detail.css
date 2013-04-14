@@ -1,0 +1,25 @@
+.info h2{
+	color: #ff6600;
+	font-size: 22px;
+	font-family: "Microsoft Yahei";
+	font-weight: normal;
+	margin-bottom: 16px;
+}
+.info p{
+	color: #999999;
+	margin: 5px 0;
+}
+.info-tit{
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.btn{
+	float: right;
+	margin-top: 5px;
+}
+
+.view{
+	text-align: center;
+	padding: 10px 0;
+}

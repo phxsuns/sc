@@ -346,4 +346,10 @@ class Post extends CI_Model{
 		$sql = "UPDATE sc_post SET post_favo = post_favo + 1 WHERE post_id=".$this->db->escape($id);
 		return $this->db->query($sql);
 	}
+
+	//访问统计操作
+	public function set_view($id){
+		$sql = "UPDATE sc_post SET post_view = post_view + 1 WHERE post_id=".$this->db->escape($id);
+		return $this->db->query($sql);
+	}
 }

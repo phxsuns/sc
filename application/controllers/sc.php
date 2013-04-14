@@ -3,11 +3,22 @@ class Sc extends CI_Controller{
 
 	private $per_page = 10;//每页条数
 
+	private $login = false;
+
 	function __construct(){
 		parent::__construct();
-		$this->load->database();	
+		$this->load->database();
 		$this->load->model('Post');
 		$this->load->library('page');
+
+		$this->load->library('session');
+		
+		$uid = $this->session->userdata('uid');
+		$uname = $this->session->userdata('uname');
+
+		if($uid && $uname){
+			$this->login = true;
+		}
 	}
 
 	//首页
@@ -35,6 +46,12 @@ class Sc extends CI_Controller{
 
 		$data["pager"] = $pagination;
 
+		//热门标签
+		$data["hot_tags"] = $this->_get_hot_tags();
+
+		//登录状态
+		$data["login"] = $this->login;
+
 		$this->load->view('list',$data);
 	}
 
@@ -53,7 +70,7 @@ class Sc extends CI_Controller{
 		$data["keys"] = $k;
 
 		//获取列表数据
-		$this->page->init(array('uri_segment'=>2));
+		$this->page->init(array('uri_segment'=>3));
 		$cur_page = $this->page->get_cur_page();//当前页码
 
 		$total_rows = $this->Post->search_num($k);//获得总条数
@@ -74,6 +91,12 @@ class Sc extends CI_Controller{
 
 		$data["total"] = $total_rows;
 
+		//热门标签
+		$data["hot_tags"] = $this->_get_hot_tags();
+
+		//登录状态
+		$data["login"] = $this->login;
+
 		$this->load->view('list',$data);
 	}
 
@@ -85,7 +108,7 @@ class Sc extends CI_Controller{
 		$data["tag"] = $tag;
 
 		//获取列表数据
-		$this->page->init(array('uri_segment'=>2));
+		$this->page->init(array('uri_segment'=>3));
 		$cur_page = $this->page->get_cur_page();//当前页码
 
 		$total_rows = $this->Post->show_num($tag);//获得总条数
@@ -103,6 +126,12 @@ class Sc extends CI_Controller{
 		$pagination = $this->page->output();
 
 		$data["pager"] = $pagination;
+
+		//热门标签
+		$data["hot_tags"] = $this->_get_hot_tags();
+
+		//登录状态
+		$data["login"] = $this->login;
 
 		$this->load->view('list',$data);
 	}
@@ -128,6 +157,17 @@ class Sc extends CI_Controller{
 			$outlist[] = $row;
 		}
 		return $outlist;
+	}
+
+	//获取热门关标签
+	private function _get_hot_tags(){
+		$this->load->model('Tag');
+		$tags_list = $this->Tag->hot_tags(20);
+		$r = array();
+		foreach ($tags_list as $v) {
+			$r[] = $v['tag_name'];
+		}
+		return $r;
 	}
 
 }
