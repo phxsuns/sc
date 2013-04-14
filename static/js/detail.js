@@ -8,7 +8,7 @@ $(function(){
 			var id = $me.attr('data-id');
 			$.get('/api/post_del/',{id:id},function(data){
 				if(data && data.status == 'ok'){
-					$me.parents('.item').slideUp();
+					window.location.href = '/';
 				}
 			},'json');
 		}

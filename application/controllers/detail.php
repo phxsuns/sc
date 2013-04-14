@@ -1,11 +1,22 @@
 <?php
 class Detail extends CI_Controller{
 
+	private $login = false;
+
 	function __construct(){
 		parent::__construct();
 		$this->load->helper('url');	
 		$this->load->database();
 		$this->load->model('Post');
+
+		$this->load->library('session');
+		
+		$uid = $this->session->userdata('uid');
+		$uname = $this->session->userdata('uname');
+
+		if($uid && $uname){
+			$this->login = true;
+		}
 	}
 
 	//首页
@@ -41,6 +52,9 @@ class Detail extends CI_Controller{
 		$data["tags"] = explode(',', $detail['tags']);
 		$data["date"] = date('Y-n-d',$detail['post_date']);
 		$data["title"] = $detail['post_title'];
+
+		//登录状态
+		$data["login"] = $this->login;
 
 		//访问统计
 		$this->Post->set_view($id);

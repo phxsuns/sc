@@ -66,6 +66,22 @@ class Api extends CI_Controller{
 		
 	}
 
+	public function post_edit(){
+		$post_id = $this->input->post('id',TRUE);
+		$post_tags = $this->input->post('tags',TRUE);
+		$post_intro = $this->input->post('intro',TRUE);
+
+		$data = array(
+			'tag' => $post_tags,
+			'intro' => $post_intro
+		);
+		$r = $this->Post->post_edit($post_id,$data);
+
+		if($r) $returnAarray = array('status' => 'ok');
+		else $returnAarray = array('status' => 'failed');
+		print json_encode($returnAarray);
+	}
+
 	//添加时对图片处理
 	private function _do_images($file){
 		

@@ -36,6 +36,10 @@
 				<p><span class="info-tit">入库日期：</span><?=$date ?></p>
 				<p><span class="info-tit">浏览次数：</span><?=$view ?></p>
 				<p><span class="info-tit">详细描述：</span><?=$intro ?></p>
+				<?php if(isset($login) && $login): ?><div class="info-admin">
+					<a href="/admin/edit/<?=$id ?>" class="btn-edit" data-id="<?=$id ?>">编辑</a>
+					<a href="javascript:;" class="btn-del" data-id="<?=$id ?>">删除</a>
+				</div><?php endif; ?>
 			</div>
 			<div class="view">
 				<img src="<?=$image_d ?>">

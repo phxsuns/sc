@@ -63,18 +63,6 @@ html{
 	text-align: right;
 }
 
-.add-list .thumbnail{
-	background-color: #FFFFFF;
-	width: 250px;
-	height: 250px;
-}
-.add-list .thumbnailbox{
-	width: 250px;
-	height: 250px;
-	text-align: center;
-	vertical-align: middle;
-	display: table-cell;
-}
 
 .add-list .btn-rm{
 	display: none;
@@ -90,6 +78,48 @@ html{
 	width: 150px;
 }
 
+.edit-image{
+	float: left;
+}
+.edit-table{
+	padding: 20px 10px;
+}
+.edit-body{
+	margin-left: 290px;
+}
+.edit-row{
+	margin-bottom: 16px;
+}
+.edit-label{
+	float: left;
+	width: 70px;
+	text-align: right;
+	padding: 4px 6px;
+}
+.edit-control{
+	margin-left: 100px;
+}
+.edit-save{
+	margin-left: 390px;
+	margin-top: 75px;
+}
+.edit-save .btn{
+	width: 100px;
+}
+
+.thumbnail{
+	background-color: #FFFFFF;
+	width: 250px;
+	height: 250px;
+}
+.thumbnailbox{
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
 .mask{
 	position: fixed;
 	top: 0;
@@ -100,12 +130,14 @@ html{
 	z-index: 1000;
 	display: none;
 }
-.add-success{
+.add-success,
+.edit-success{
 	top: 50%;
 	margin-top: -105px;
 	display: none;
 }
-.add-loading{
+.add-loading,
+.edit-loading{
 	width: 200px;
 	margin-left: -100px;
 	top: 50%;

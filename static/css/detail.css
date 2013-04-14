@@ -1,3 +1,7 @@
+.info{
+	position: relative;
+	z-index: 1;
+}
 .info h2{
 	color: #ff6600;
 	font-size: 22px;
@@ -14,9 +18,21 @@
 	margin-right: 5px;
 }
 
+.info-admin{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: none;
+}
+.info:hover .info-admin{
+	display: block;
+}
+
 .btn{
 	float: right;
 	margin-top: 5px;
+	position: relative;
+	z-index: 2;
 }
 
 .view{

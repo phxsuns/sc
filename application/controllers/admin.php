@@ -30,7 +30,33 @@ class Admin extends CI_Controller{
 
 	//编辑页面
 	function edit(){
+		$id =  (int) $this->uri->segment(3);
+		if($id <= 0) redirect('/admin');
 
+		$data = array();
+
+		$this->load->database();	
+		$this->load->model('Post');
+
+		$data["id"] = $id;
+
+		//读取信息
+		$detail = $this->Post->show_detail($id);
+		
+		if(!count($detail)) redirect('/');
+
+		$type = $detail['attach_type'];
+		$ext = ($type == 'jpg' || $type == 'gif' || $type == 'png') ? $type : 'jpg';
+		$filename = $detail['attach_name'];
+		$path = '/attach/'.$detail['attach_path'].'/';
+
+		$data["image_v"] = $path.$filename.'_v.'.$ext;
+		$data["intro"] = $detail['post_intro'];
+		$data["tag"] = $detail['tags'];
+		$data["tags"] = explode(',', $detail['tags']);
+		$data["title"] = $detail['post_title'];
+
+		$this->load->view('admin-edit',$data);
 	}
 
 }

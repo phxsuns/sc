@@ -106,7 +106,7 @@ $(function(){
 			var $this = $(this);
 			infoList.push($this.attr('data-info'));
 			oriList.push($this.attr('data-ori'));
-			tagList.push($this.find('.input-tag').val().replace('，',','));
+			tagList.push($this.find('.input-tag').val());
 		});
 		$('#mask').fadeIn();
 		$('#popLoading').fadeIn().find('.loading').html('处理中...');
