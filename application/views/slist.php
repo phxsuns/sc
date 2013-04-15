@@ -9,14 +9,14 @@
 
 	<link rel="stylesheet" href="/static/css/common.css" type="text/css">
 	<link rel="stylesheet" href="/static/css/global.css" type="text/css">
-	<link rel="stylesheet" href="/static/css/list.css" type="text/css">
+	<link rel="stylesheet" href="/static/css/slist.css" type="text/css">
 	<script src="/static/js/jquery.js"></script>
 	<script src="/static/js/global.js"></script>
-	<script src="/static/js/list.js"></script>
+	<!--<script src="/static/js/slist.js"></script>-->
 </head>
 <body>
 
-	<?php $this->load->view('header',array('key'=>isset($key) ? $key : ''));?>
+	<?php $this->load->view('header',array());?>
 
 	<div id="nav">
 		<div class="container">
@@ -43,42 +43,26 @@
 
 	<div id="main">
 		<div class="container">
-			<?php if($flag == 'search'): ?><div class="total">
-				<span class="total-key"><em>“</em> <?=$key ?> <em>”</em></span>共找到 <?=$total ?> 个相关结果
-			</div><?php endif; ?>
 			<?php if(count($list) > 0): ?>
-			<div class="list">
-				<?php foreach($list as $v): ?><div class="item">
+			<div class="list clr">
+				<?php foreach($list as $k => $v): ?><div class="item<?php if($k % 4 == 0) echo ' item-left'; ?>">
 					<div class="item-view">
 						<a href="/show/<?=$v['id'] ?>" target="_blank"><div class="thumbnail"><img src="<?=$v['image_v'] ?>"></div></a>
-					</div>
-					<div class="item-btn">
-						<a class="big-btn" href="/download?n=<?php echo implode('.', $v['tags']); ?>&f=<?=$v['src'] ?>" target="_blank"><i class="icon icon-download"></i>源文件下载</a>
-						<a class="big-btn" href="<?=$v['image'] ?>" target="_blank"><i class="icon icon-src"></i>大图浏览</a>
 					</div>
 					<div class="item-main">
 						<h3><a href="/show/<?=$v['id'] ?>" target="_blank"><?php
 							$tag = isset($tag) ? $tag : '';
-							$keys = isset($keys) ? $keys : array();
-							$keys[] = $tag;
 							$r = array();
 							foreach ($v['tags'] as $vv) {
-								foreach ($keys as $w) {
-									$vv = str_replace($w, '<span class="red">'.$w.'</span>', $vv);
-								}
-								$r[] = $vv;
+								$r[] = str_replace($tag, '<span class="red">'.$tag.'</span>', $vv);
 							}
 							echo implode(' ', $r);
 						?></a></h3>
-						<p>素材类型：<?=$v['type'] ?></p>
-						<p>入库日期：<?=$v['date'] ?></p>
-						<p>浏览次数：<?=$v['view'] ?></p>
-						<p>详细描述：<?=$v['intro'] ?></p>
+						<p>
+							<a href="/download?n=<?php echo implode('.', $v['tags']); ?>&f=<?=$v['src'] ?>" target="_blank" class="item-link">下载</a><a href="<?=$v['image'] ?>" target="_blank" class="item-link">大图</a>
+							<span>类型：<?=$v['type'] ?></span>&nbsp;&nbsp;<span>时间：<?=date('n-d',$v['time']) ?></span>
+						</p>
 					</div>
-					<?php if(isset($login) && $login): ?><div class="item-admin">
-						<a href="/admin/edit/<?=$v['id'] ?>" class="btn-edit" data-id="<?=$v['id'] ?>" target="_blank">编辑</a>
-						<a href="javascript:;" class="btn-del" data-id="<?=$v['id'] ?>">删除</a>
-					</div><?php endif; ?>
 				</div><?php endforeach; ?>
 			</div>
 			<div class="pager clr"><?=$pager ?></div>

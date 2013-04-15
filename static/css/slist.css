@@ -1,0 +1,112 @@
+.navinfo .row{
+	padding: 3px 0;
+}
+.navinfo .row-title{
+	float: left;
+	font-weight: bold;
+	color: #999999;
+	margin-right: 10px;
+}
+.navinfo .row-info a{
+	margin-right: 10px;
+	color: #999999;
+	text-decoration: none;
+}
+.navinfo .row-info a:hover,
+.navinfo .row-info a.selected{
+	color: #FF9422;
+}
+
+.navhr{
+	background: url(../images/hr.png) no-repeat center center;
+	height: 13px;
+	margin-top: 20px;
+}
+
+.total{
+	border-bottom: 1px solid #EAEAEA;
+	padding-bottom: 10px;
+	font-weight: bold;
+	color: #333333;
+}
+.total-key{
+	font-size: 14px;
+	color: #FF0000;
+}
+.total-key em{
+	font-family: simhei;
+}
+
+.item{
+	padding: 10px 0;
+	/*border-bottom: 1px dashed #E4E4E4;*/
+	position: relative;
+	float: left;
+	width: 212px;
+	margin-left: 44px;
+	overflow: hidden;
+}
+.item-left{
+	margin-left: 0;
+}
+.item-view{
+}
+.item-view a{
+	display: block;
+}
+.thumbnail{
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	padding: 5px;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	transition: all 0.2s ease-in-out;
+}
+.thumbnail img{
+	max-width:200px;
+	max-height:200px;
+}
+.item-view a:hover .thumbnail,
+.item:hover .thumbnail{
+	border-color: #FF9422;
+	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+
+
+.item-main{
+	margin-top: 12px;
+}
+.item-main h3{
+	font-size: 12px;
+	width: 212px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.item-main p{
+	color: #999999;
+	margin: 8px 0;
+}
+.item-main .red{
+	color: #FF0000;
+}
+
+.item-link{
+	float: right;
+	margin-left: 5px;
+}
+
+.pager .pagination{
+	float: right;
+}
+
+.empty{
+	text-align: center;
+	font-size: 20px;
+	line-height: 80px;
+	font-weight: bold;
+	color: #B2B2B2;
+}

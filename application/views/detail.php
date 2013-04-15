@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>素材库 - 阿里学院UED</title>
+	<title>在线图库 - 阿里学院UED</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico">
 	<link rel="icon" type="image/x-icon" href="/static/favicon.ico">

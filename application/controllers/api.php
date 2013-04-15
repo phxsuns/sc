@@ -122,8 +122,11 @@ class Api extends CI_Controller{
 
 		if($size['width'] > 980){
 			$this->load->library('image_lib');	
+			$config['image_library'] = 'gd2';
 			$config['width'] = 980;
-			//$config['height'] = 845;
+			$config['master_dim'] = 'width';
+			$config['maintain_ratio'] = TRUE;
+			$config['height'] = $size['height'];//必须设置，否则压缩异常
 			$config['source_image'] = $path.$file_ori_view;
 			$config['new_image'] = $path.$file_d;
 			$this->image_lib->initialize($config);

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>素材库 - 登录</title>
+	<title>在线图库 - 登录</title>
 	<link href="/static/css/bootstrap.css" rel="stylesheet" />
 	<script src="/static/js/jquery.js"></script>
 	<style>

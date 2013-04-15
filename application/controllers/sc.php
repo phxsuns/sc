@@ -1,7 +1,7 @@
 <?php
 class Sc extends CI_Controller{
 
-	private $per_page = 10;//每页条数
+	private $per_page = 20;//每页条数
 
 	private $login = false;
 
@@ -52,7 +52,7 @@ class Sc extends CI_Controller{
 		//登录状态
 		$data["login"] = $this->login;
 
-		$this->load->view('list',$data);
+		$this->load->view('slist',$data);
 	}
 
 	//搜索页
@@ -80,7 +80,7 @@ class Sc extends CI_Controller{
 		$data["list"] = $this->_do_list($list);
 
 		//生成页码
-		$config['base_url'] = '/';
+		$config['base_url'] = '/search/'.rawurlencode($key).'/';
 		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $this->per_page;
 		$config['num_pn'] = 5;
@@ -118,7 +118,7 @@ class Sc extends CI_Controller{
 		$data["list"] = $this->_do_list($list);
 
 		//生成页码
-		$config['base_url'] = '/tag';
+		$config['base_url'] = '/tag/'.rawurlencode($tag).'/';
 		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $this->per_page;
 		$config['num_pn'] = 5;
@@ -133,7 +133,7 @@ class Sc extends CI_Controller{
 		//登录状态
 		$data["login"] = $this->login;
 
-		$this->load->view('list',$data);
+		$this->load->view('slist',$data);
 	}
 
 	//处理列表数据
@@ -146,6 +146,7 @@ class Sc extends CI_Controller{
 			$row['intro'] = $v['post_intro'];
 			$row['user'] = $v['user_name'];
 			$row['date'] = date('Y-n-d',$v['post_date']);
+			$row['time'] = $v['post_date'];
 			$row['view'] = $v['post_view'];
 			//$row['favo'] = $v['post_favo'];
 			$row['tags'] = explode(',', $v['tags']);
