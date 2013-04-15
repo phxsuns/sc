@@ -42,15 +42,19 @@ var doUpload = function(files){
 	for(var i=0;i<files.length;i++){
 		upload(files[i],function(data){
 			//console.log(data);
-			var d = data.data;
-			var html = '<tr data-info="'+d.name + d.type+'" data-ori="'+data.name+'">\
-							<td><div class="thumbnail"><div class="thumbnailbox"><img src="/attach/temp/'+d.name+'_v' + d.ext+'"></div></div></td>\
-							<td>\
-								<input type="text" class="input-xxlarge input-tag h-tags">\
-							</td>\
-							<td><button class="btn btn-small btn-danger btn-rm" type="button">移除</button></td>\
-						</tr>';
-			$('#fileList table tbody').append(html);
+			if(data.status == 'ok'){
+				var d = data.data;
+				var html = '<tr data-info="'+d.name + d.type+'" data-ori="'+data.name+'">\
+								<td><div class="thumbnail"><div class="thumbnailbox"><img src="/attach/temp/'+d.name+'_v' + d.ext+'"></div></div></td>\
+								<td>\
+									<input type="text" class="input-xxlarge input-tag h-tags">\
+								</td>\
+								<td><button class="btn btn-small btn-danger btn-rm" type="button">移除</button></td>\
+							</tr>';
+				var $html = $(html);
+				$html.appendTo($('#fileList table tbody'));
+				formatTags($html.find('.h-tags'));
+			}
 		},function(){
 			okcount++;
 			loading(okcount,files.length);
@@ -65,20 +69,20 @@ var loading = function(n,total){
 };
 
 var completeUpload = function(n){
-	$('#fileList').show();
+	if($('#fileList tbody tr')[0]) $('#fileList').show();
 	$('#mask').fadeOut();
 	$('#popLoading').fadeOut();
 }
 
 
 //标签优化
-var formatTags = function(){
-	var $inputTags = $('.h-tags').hide();
+var formatTags = function(dom){
+	var $inputTags = dom.hide();
 	var $ulTags = $('<ul class="h-tagslist clearfix"><li class="h-tagslist-add"><input type="text"><a href="#">+</a></li></ul>').insertAfter($inputTags);
 
 	var taglist = $inputTags.val().split(',');
 	for(var i = 0; i < taglist.length ; i++){
-		$('<li><span>'+taglist[taglist.length - 1 - i]+'</span><a href="#">×</a></li>').prependTo($ulTags);
+		if(taglist[taglist.length - 1 - i]) $('<li><span>'+taglist[taglist.length - 1 - i]+'</span><a href="#">×</a></li>').prependTo($ulTags);
 	}
 
 	//同步到文本框

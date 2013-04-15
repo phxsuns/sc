@@ -35,13 +35,13 @@ $(function(){
 //标签优化
 (function(){
 
-	var formatTags = function(){
-		var $inputTags = $('.h-tags').hide();
+	var formatTags = function(dom){
+		var $inputTags = dom.hide();
 		var $ulTags = $('<ul class="h-tagslist clearfix"><li class="h-tagslist-add"><input type="text"><a href="#">+</a></li></ul>').insertAfter($inputTags);
 
 		var taglist = $inputTags.val().split(',');
 		for(var i = 0; i < taglist.length ; i++){
-			$('<li><span>'+taglist[taglist.length - 1 - i]+'</span><a href="#">×</a></li>').prependTo($ulTags);
+			if(taglist[taglist.length - 1 - i]) $('<li><span>'+taglist[taglist.length - 1 - i]+'</span><a href="#">×</a></li>').prependTo($ulTags);
 		}
 
 		//同步到文本框
@@ -79,7 +79,7 @@ $(function(){
 	}
 
 	$(function(){
-		formatTags();
+		formatTags($('.h-tags'));
 	});
 
 })();
