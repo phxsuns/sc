@@ -85,7 +85,8 @@ html{
 	padding: 20px 10px;
 }
 .edit-body{
-	margin-left: 290px;
+	margin-left: 20px;
+	float: left;
 }
 .edit-row{
 	margin-bottom: 16px;
@@ -101,10 +102,12 @@ html{
 }
 .edit-save{
 	margin-left: 390px;
-	margin-top: 75px;
 }
 .edit-save .btn{
 	width: 100px;
+}
+.edit-control textarea{
+	min-height: 85px;
 }
 
 .thumbnail{
@@ -149,3 +152,58 @@ html{
 	padding-left: 50px;
 	line-height: 32px;
 }
+.h-tagslist{
+	list-style: none;
+	margin: 0;
+	width: 800px;
+}
+.h-tagslist li{
+	background: #d9e7fe;
+	border: 1px solid #9cb0d8;
+	padding: 5px 5px 5px 8px;
+	float: left;
+	cursor: default;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+.h-tagslist li a{
+	visibility: hidden;
+	text-decoration: none;
+	color: #aeb8cb;
+	cursor: pointer;
+	font-size: 20px;
+	float: right;
+}
+.h-tagslist li a:hover{
+	color: #222222;
+}
+.h-tagslist li:hover{
+	border-color: #869EC9;
+}
+.h-tagslist li:hover a{
+	visibility: visible;
+}
+
+li.h-tagslist-add{
+	padding: 4px 5px 4px 8px;
+}
+li.h-tagslist-add a{
+	visibility: visible;
+	margin-left: 5px;
+}
+.h-tagslist-add input{
+	border: 1px solid #d9d9d9;
+	padding: 0px;
+	margin: 0px;
+	height: auto;
+	background-color: #FFF;
+	outline: none;
+	box-shadow: none;
+	transition: none;
+	border-radius: 0;
+	width: 80px;
+}
+.h-tagslist-add input:focus{
+	border: 1px solid #4D90FE;
+	box-shadow: none;
+};

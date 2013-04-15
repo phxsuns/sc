@@ -46,7 +46,7 @@ var doUpload = function(files){
 			var html = '<tr data-info="'+d.name + d.type+'" data-ori="'+data.name+'">\
 							<td><div class="thumbnail"><div class="thumbnailbox"><img src="/attach/temp/'+d.name+'_v' + d.ext+'"></div></div></td>\
 							<td>\
-								<input type="text" class="input-xxlarge input-tag">\
+								<input type="text" class="input-xxlarge input-tag h-tags">\
 							</td>\
 							<td><button class="btn btn-small btn-danger btn-rm" type="button">移除</button></td>\
 						</tr>';
@@ -71,6 +71,49 @@ var completeUpload = function(n){
 }
 
 
+//标签优化
+var formatTags = function(){
+	var $inputTags = $('.h-tags').hide();
+	var $ulTags = $('<ul class="h-tagslist clearfix"><li class="h-tagslist-add"><input type="text"><a href="#">+</a></li></ul>').insertAfter($inputTags);
+
+	var taglist = $inputTags.val().split(',');
+	for(var i = 0; i < taglist.length ; i++){
+		$('<li><span>'+taglist[taglist.length - 1 - i]+'</span><a href="#">×</a></li>').prependTo($ulTags);
+	}
+
+	//同步到文本框
+	$ulTags.bind('sync',function(){
+		var val = '';
+		$(this).find('li span').each(function(){
+			var txt = $(this).text();
+			val += val ? ',' : '';
+			if(txt) val += txt;
+		});
+		$inputTags.val(val);
+	});
+
+	//加减事件
+	$ulTags.delegate('a','click',function(e){
+		e.preventDefault();
+		$me = $(this);
+		if($me.parent().hasClass('h-tagslist-add')){
+			var $input = $me.prev();
+			if($input.val()){
+				$me.parent().before('<li><span>'+$input.val()+'</span><a href="#">×</a></li>');
+				$input.val('');
+			}
+		}else{
+			$me.parent().remove();
+		}
+		$ulTags.trigger('sync');
+	});
+
+	//回车事件
+	$ulTags.find('.h-tagslist-add input').bind('keyup',function(e){
+		if(e.keyCode == 13) $(this).next().trigger('click');
+	});
+
+}
 
 //Dom Ready
 $(function(){
@@ -128,7 +171,6 @@ $(function(){
 	});
 
 });
-
 
 
 })();

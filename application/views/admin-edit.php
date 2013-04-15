@@ -28,15 +28,17 @@
 				</div>
 				<div class="edit-row">
 					<label class="edit-label" for="inputTags">标签：</label>
-					<div class="edit-control"><input type="text" id="inputTags" class="input-xxlarge" value="<?=$tag ?>"></div>
+					<div class="edit-control">
+						<input type="text" id="inputTags" class="input-xxlarge h-tags" value="<?=$tag ?>">
+					</div>
 				</div>
 				<div class="edit-row">
 					<label class="edit-label" for="inputIntro">说明：</label>
-					<div class="edit-control"><input type="text" id="inputIntro" class="input-xxlarge" value="<?=$intro ?>"></div>
+					<div class="edit-control"><textarea id="inputIntro" class="input-xxlarge"><?=$intro ?></textarea></div>
 				</div>
 			</div>
-			<div class="edit-save"><button class="btn btn-primary" type="button" id="btnSave" data-id="<?=$id ?>">保存修改</button></div>
 		</div>
+		<div class="edit-save"><button class="btn btn-primary" type="button" id="btnSave" data-id="<?=$id ?>">保存修改</button></div>
 	</div>
 
 	<div id="mask" class="mask"></div>
