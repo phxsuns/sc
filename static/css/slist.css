@@ -40,8 +40,6 @@
 
 .item{
 	padding: 10px 0;
-	/*border-bottom: 1px dashed #E4E4E4;*/
-	position: relative;
 	float: left;
 	width: 212px;
 	margin-left: 44px;
@@ -58,13 +56,14 @@
 .thumbnail{
 	width: 200px;
 	height: 200px;
-	text-align: center;
-	vertical-align: middle;
 	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
 	padding: 5px;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 	transition: all 0.2s ease-in-out;
+	display: block\9;
 }
 .thumbnail img{
 	max-width:200px;
