@@ -43,6 +43,9 @@
 
 	<div id="main">
 		<div class="container">
+			<?php if($flag == 'search'): ?><div class="total">
+				<span class="total-key"><em>“</em> <?=$key ?> <em>”</em></span>共找到 <?=$total ?> 个相关结果
+			</div><?php endif; ?>
 			<?php if(count($list) > 0): ?>
 			<div class="list clr">
 				<?php foreach($list as $k => $v): ?><div class="item<?php if($k % 4 == 0) echo ' item-left'; ?>">
@@ -52,9 +55,15 @@
 					<div class="item-main">
 						<h3><a href="/show/<?=$v['id'] ?>" target="_blank"><?php
 							$tag = isset($tag) ? $tag : '';
+							$keys = isset($keys) ? $keys : array();
+							$keys[] = $tag;
 							$r = array();
 							foreach ($v['tags'] as $vv) {
-								$r[] = str_replace($tag, '<span class="red">'.$tag.'</span>', $vv);
+								foreach ($keys as $w) {
+									$mr = preg_match('/'.$w.'/i',$vv,$m);
+									if($mr) $vv = str_ireplace($w, '<span class="red">'.$m[0].'</span>', $vv);
+								}
+								$r[] = $vv;
 							}
 							echo implode(' ', $r);
 						?></a></h3>

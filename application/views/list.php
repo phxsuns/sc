@@ -64,7 +64,8 @@
 							$r = array();
 							foreach ($v['tags'] as $vv) {
 								foreach ($keys as $w) {
-									$vv = str_replace($w, '<span class="red">'.$w.'</span>', $vv);
+									$mr = preg_match('/'.$w.'/i',$vv,$m);
+									if($mr) $vv = str_ireplace($w, '<span class="red">'.$m[0].'</span>', $vv);
 								}
 								$r[] = $vv;
 							}

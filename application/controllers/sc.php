@@ -97,7 +97,7 @@ class Sc extends CI_Controller{
 		//登录状态
 		$data["login"] = $this->login;
 
-		$this->load->view('list',$data);
+		$this->load->view('slist',$data);
 	}
 
 	//分类索引
