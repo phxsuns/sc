@@ -97,13 +97,15 @@ class Page{
 		
 		$num_start_end = $this->num_pn * 2 + 1;
 		if($num_start > 2){
-			$num_prevs = ($cur_page - $num_start_end >= $this->num_pn + 1) ? $cur_page - $num_start_end : $this->num_pn + 1;
+			//$num_prevs = ($cur_page - $num_start_end >= $this->num_pn + 1) ? $cur_page - $num_start_end : $this->num_pn + 1;
+			$num_prevs = round(($num_start - 1) / 2) + 1;
 			$uri['page'] = $num_prevs;
 			$num_prevs_url = $CI->uri->assoc_to_uri($uri);
 			$num = '<a class="'.$this->dot_class.'" href="'.$this->base_url.$num_prevs_url.'">…</a>'.$num;
 		}
 		if($num_end < $total_pages - 1){
-			$num_nexts = ($cur_page + $num_start_end <= $total_pages - $this->num_pn) ? $cur_page + $num_start_end : $total_pages - $this->num_pn;
+			//$num_nexts = ($cur_page + $num_start_end <= $total_pages - $this->num_pn) ? $cur_page + $num_start_end : $total_pages - $this->num_pn;
+			$num_nexts = $total_pages - round(($total_pages - $num_end) / 2);
 			$uri['page'] = $num_nexts;
 			$num_nexts_url = $CI->uri->assoc_to_uri($uri);
 			$num = $num.'<a class="'.$this->dot_class.'" href="'.$this->base_url.$num_nexts_url.'">…</a>';
