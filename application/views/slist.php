@@ -13,7 +13,7 @@
 	<script src="/static/js/jquery.js"></script>
 	<script src="/static/js/lazyload.js"></script>
 	<script src="/static/js/global.js"></script>
-	<!--<script src="/static/js/slist.js"></script>-->
+	<script src="/static/js/slist.js"></script>
 </head>
 <body>
 
