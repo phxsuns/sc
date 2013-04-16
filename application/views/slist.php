@@ -51,7 +51,7 @@
 			<div class="list clr">
 				<?php foreach($list as $k => $v): ?><div class="item<?php if($k % 4 == 0) echo ' item-left'; ?>">
 					<div class="item-view">
-						<a href="/show/<?=$v['id'] ?>" target="_blank"><div class="thumbnail"><img src="/static/icon-loading.gif" data-original="<?=$v['image_v'] ?>" class="lazy"></div></a>
+						<a href="/show/<?=$v['id'] ?>" target="_blank"><div class="thumbnail"><img src="/static/images/icon-loading.gif" data-original="<?=$v['image_v'] ?>" class="lazy"></div></a>
 					</div>
 					<div class="item-main">
 						<h3><a href="/show/<?=$v['id'] ?>" target="_blank"><?php
