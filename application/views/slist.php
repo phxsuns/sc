@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="/static/css/global.css" type="text/css">
 	<link rel="stylesheet" href="/static/css/slist.css" type="text/css">
 	<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/lazyload.js"></script>
 	<script src="/static/js/global.js"></script>
 	<!--<script src="/static/js/slist.js"></script>-->
 </head>
@@ -50,7 +51,7 @@
 			<div class="list clr">
 				<?php foreach($list as $k => $v): ?><div class="item<?php if($k % 4 == 0) echo ' item-left'; ?>">
 					<div class="item-view">
-						<a href="/show/<?=$v['id'] ?>" target="_blank"><div class="thumbnail"><img src="<?=$v['image_v'] ?>"></div></a>
+						<a href="/show/<?=$v['id'] ?>" target="_blank"><div class="thumbnail"><img src="/static/icon-loading.gif" data-original="<?=$v['image_v'] ?>" class="lazy"></div></a>
 					</div>
 					<div class="item-main">
 						<h3><a href="/show/<?=$v['id'] ?>" target="_blank"><?php

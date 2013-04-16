@@ -20,6 +20,11 @@ $(function(){
 		window.location.href = url;
 	});
 
+	//懒加载
+	$("img.lazy").lazyload({ 
+		effect : "fadeIn"
+	});
+
 	//浏览器兼容性
 	//IE678，提示
 	if (!$.support.leadingWhitespace){
