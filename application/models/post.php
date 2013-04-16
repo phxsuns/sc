@@ -297,7 +297,7 @@ class Post extends CI_Model{
 	}
 	
 	//搜索查询
-	private function search_sql_str($tag_list,$from,$long){
+	private function search_sql_str($tag_list,$from = 0,$long){
 		$sql = "SELECT p.*,t.tag_name,pt.tags,a.attach_name,a.attach_type,a.attach_path,u.user_name,COUNT(t.tag_pid) AS c FROM sc_tag t , (sc_post p LEFT JOIN sc_pt pt ON pt.pid = p.post_id LEFT JOIN sc_attach a ON a.attach_pid = p.post_id LEFT JOIN sc_user u ON u.user_id = p.post_user) WHERE t.tag_pid = p.post_id ";
 		
 		
@@ -319,9 +319,9 @@ class Post extends CI_Model{
 		
 		//mysql limit -1 有些版本有bug，临时处理。
 		if($long > 0){
-			if($from){
+			//if($from){
 				$sql .= " LIMIT ".$this->db->escape($from).",".$this->db->escape($long);
-			}//else if(!$from && $long > 0){
+			//}//else if(!$from && $long > 0){
 			//	$sql .= " LIMIT ".$this->db->escape($long);
 			//}
 		}
