@@ -28,7 +28,7 @@
 				<thead>
 					<tr>
 						<th width="270">预览</th>
-						<th>标签设定（请用英文逗号隔开）</th>
+						<th>标签设定</th>
 						<th width="100">&nbsp;</th>
 					</tr>
 				</thead>

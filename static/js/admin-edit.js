@@ -61,8 +61,10 @@ $(function(){
 			$me = $(this);
 			if($me.parent().hasClass('h-tagslist-add')){
 				var $input = $me.prev();
-				if($input.val()){
-					$me.parent().before('<li><span>'+$input.val()+'</span><a href="#">×</a></li>');
+				var val = $input.val();
+				val = val.replace(/(^\s*)|(\s*$)/g, "").replace(',',' ');
+				if(val){
+					$me.parent().before('<li><span>'+val+'</span><a href="#">×</a></li>');
 					$input.val('');
 				}
 			}else{
