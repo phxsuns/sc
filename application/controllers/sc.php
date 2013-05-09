@@ -105,14 +105,21 @@ class Sc extends CI_Controller{
 		$tag = rawurldecode($this->uri->segment(2));
 		$data = array();
 		$data["flag"] = 'tag';
-		$data["tag"] = $tag;
+		//$data["tag"] = $tag;
+
+		$tags = explode(' ', $tag);
+		$t = array();
+		foreach ($tags as $value) {
+			if($value != '') $t[] = $value;
+		}
+		$data["tags"] = $t;
 
 		//获取列表数据
 		$this->page->init(array('uri_segment'=>3));
 		$cur_page = $this->page->get_cur_page();//当前页码
 
-		$total_rows = $this->Post->show_num($tag);//获得总条数
-		$list = $this->Post->show_list($tag,0,0,($cur_page - 1) * $this->per_page,$this->per_page);//获得数据
+		$total_rows = $this->Post->tag_num($t);//获得总条数
+		$list = $this->Post->tag_list($t,($cur_page - 1) * $this->per_page,$this->per_page);//获得数据
 
 		//处理列表数据
 		$data["list"] = $this->_do_list($list);
@@ -163,7 +170,7 @@ class Sc extends CI_Controller{
 	//获取热门关标签
 	private function _get_hot_tags(){
 		$this->load->model('Tag');
-		$tags_list = $this->Tag->hot_tags(20);
+		$tags_list = $this->Tag->hot_tags(50);
 		$r = array();
 		foreach ($tags_list as $v) {
 			$r[] = $v['tag_name'];

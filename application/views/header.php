@@ -5,7 +5,7 @@
 			</h1>
 			<div class="search">
 				<form id="search">
-					<input type="text" placeholder="输入关键词搜索..." class="searchtxt" value="<?php echo isset($key) ? $key : '' ?>">
+					<input type="text" placeholder="输入关键词搜索..." class="searchtxt" value="<?php echo isset($key) ? $key : '' ?>" accesskey="s" autocomplete="off" x-webkit-speech x-webkit-grammar="builtin:translate">
 					<button type="submit" class="searchbtn">搜索</button>
 				</form>
 			</div>

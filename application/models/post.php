@@ -340,6 +340,50 @@ class Post extends CI_Model{
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+	//多tag查询
+	private function tag_sql_str($tag_list,$from = 0,$long){
+		$sql = "SELECT p.*,t.tag_name,pt.tags,a.attach_name,a.attach_type,a.attach_path,u.user_name,COUNT(t.tag_pid) AS c FROM sc_tag t , (sc_post p LEFT JOIN sc_pt pt ON pt.pid = p.post_id LEFT JOIN sc_attach a ON a.attach_pid = p.post_id LEFT JOIN sc_user u ON u.user_id = p.post_user) WHERE t.tag_pid = p.post_id ";
+		
+		$count_tag_list = count($tag_list);
+		if($count_tag_list > 0){
+			$count = 0;
+			$sql .= 'AND (';
+			foreach ($tag_list as $v){
+				$sql .= $count ? " OR " : "";
+				$sql .= "t.tag_name = '".addslashes($v)."'";
+				$count++;
+			}
+			$sql .= ')';
+			$sql .= " GROUP BY t.tag_pid";
+			$sql .= ' HAVING c = '.$count_tag_list;
+		} 
+		
+		$sql .= ' ORDER BY p.post_date DESC';//排序简单处理
+		
+		//mysql limit -1 有些版本有bug，临时处理。
+		if($long > 0){
+			//if($from){
+				$sql .= " LIMIT ".$this->db->escape($from).",".$this->db->escape($long);
+			//}//else if(!$from && $long > 0){
+			//	$sql .= " LIMIT ".$this->db->escape($long);
+			//}
+		}
+		//print_r($sql);
+		return $sql;
+	}
+	
+	public function tag_num($tag_list,$from = 0,$long = -1){
+		$sql = $this->tag_sql_str($tag_list,$from, $long);
+		$query = $this->db->query($sql);
+		return $query->num_rows();
+	}
+	
+	public function tag_list($tag_list,$from = 0,$long = -1){
+		$sql = $this->tag_sql_str($tag_list,$from, $long);
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
 	
 	//投票操作
 	public function set_favo($id){
