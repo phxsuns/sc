@@ -17,6 +17,13 @@
 	color: #FF9422;
 }
 
+.navinfo-color{
+	display: inline-block;
+	width: 27px;
+	height: 11px;
+	vertical-align: middle;
+}
+
 .navhr{
 	background: url(../images/hr.png) no-repeat center center;
 	height: 13px;
