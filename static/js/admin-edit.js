@@ -85,3 +85,12 @@ $(function(){
 	});
 
 })();
+
+$(function(){
+	$('a.tag-value').click(function(e){
+		e.preventDefault();
+		var v = $(this).html();
+		$('.h-tagslist-add input').val(v);
+		$('.h-tagslist-add a').trigger('click');
+	});
+})

@@ -206,4 +206,10 @@ li.h-tagslist-add a{
 .h-tagslist-add input:focus{
 	border: 1px solid #4D90FE;
 	box-shadow: none;
-};
+}
+
+/* edit快捷功能 */
+.tag-type{font-weight: bold; display: inline;}
+.tag-row{ height: 24px; line-height: 24px;}
+a.tag-value{ padding-right: 10px; color: #333; cursor: pointer; text-decoration: none;}
+a.tag-color{display: inline-block; height: 12px; width: 24px; overflow: hidden; text-indent: -999px; margin-right:10px;}
