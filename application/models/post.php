@@ -102,18 +102,17 @@ class Post extends CI_Model{
 			$query = $this->db->query($sql);
 			$result = $this->db->affected_rows($query);
 			if(!$result) return false;
-		
-		
-			//插入关联表
-			$data_tags = array(
-				'pid' => $id,
-				'tags' => implode(',', $tag_list)
-			);
-			$sql = $this->db->insert_string('sc_pt',$data_tags);
-			$query = $this->db->query($sql);
-			$result = $this->db->affected_rows($query);
-			if(!$result) return false;
 		}
+
+		//插入关联表
+		$data_tags = array(
+			'pid' => $id,
+			'tags' => implode(',', $tag_list)
+		);
+		$sql = $this->db->insert_string('sc_pt',$data_tags);
+		$query = $this->db->query($sql);
+		$result = $this->db->affected_rows($query);
+		if(!$result) return false;
 
 		return true;
 	}

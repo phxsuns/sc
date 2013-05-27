@@ -32,14 +32,15 @@
 						<div class="tag-box">
 							<div class="tag-row"><label class="tag-type">分类：</label>
 								<a class="tag-value">人物</a>
+								<a class="tag-value">静物</a>
 								<a class="tag-value">风景</a>
 								<a class="tag-value">动物</a>
+								<a class="tag-value">植物</a>
 								<a class="tag-value">建筑</a>
 								<a class="tag-value">体育</a>
 								<a class="tag-value">美食</a>
 								<a class="tag-value">职场</a>
 								<a class="tag-value">商务</a>
-								<a class="tag-value">风土人情</a>
 							</div>
 							<div class="tag-row"><label class="tag-type">来源：</label>
 								<a class="tag-value">自拍</a>
@@ -51,6 +52,7 @@
 								<a class="tag-value">插画</a>
 								<a class="tag-value">创意</a>
 								<a class="tag-value">小培系列</a>
+								<a class="tag-value">淘公仔</a>
 							</div>
 							<div class="tag-row"><label class="tag-type">性别：</label>
 								<a class="tag-value">男</a>
@@ -63,7 +65,7 @@
 							</div>
 							<div class="tag-row"><label class="tag-type">颜色：</label>
 								<a class="tag-value tag-color" title="棕色" style="background:#B29488;">棕色</a>
-								<a class="tag-value tag-color" title="红色" style="background:#ED86AC;">红色</a>
+								<a class="tag-value tag-color" title="粉色" style="background:#ED86AC;">粉色</a>
 								<a class="tag-value tag-color" title="红色"style="background:#ED8690;">红色</a>
 								<a class="tag-value tag-color" title="黄色"style="background:#FFF082;">黄色</a>
 								<a class="tag-value tag-color" title="绿色"style="background:#D1F295;">绿色</a>
