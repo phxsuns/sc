@@ -51,7 +51,7 @@
 								<a class="tag-value">照片</a>
 								<a class="tag-value">插画</a>
 								<a class="tag-value">创意</a>
-								<a class="tag-value">小培系列</a>
+								<a class="tag-value">小伊系列</a>
 								<a class="tag-value">淘公仔</a>
 							</div>
 							<div class="tag-row"><label class="tag-type">性别：</label>
